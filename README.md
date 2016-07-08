@@ -1,25 +1,34 @@
-# Ember-data-twitch
+# Ember Data Twitch
 
-This README outlines the details of collaborating on this Ember addon.
+This addon provides Ember-Data abstractions for the [Twitch API v3](https://github.com/justintv/Twitch-API).
 
-## Installation
+## Usage
 
-* `git clone` this repository
+TBA
+
+## Contributing
+
+This section outlines the details of collaborating on this Ember addon.
+
+### Installation
+
+* `git clone git@github.com:elwayman02/ember-data-twitch.git`
+* `cd ember-data-twitch/`
 * `npm install`
 * `bower install`
 
-## Running
+### Running
 
 * `ember serve`
-* Visit your app at http://localhost:4200.
+* Visit your app at [http://localhost:4200](http://localhost:4200).
 
-## Running Tests
+### Running Tests
 
-* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
+* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
 * `ember test`
 * `ember test --server`
 
-## Building
+### Building
 
 * `ember build`
 
