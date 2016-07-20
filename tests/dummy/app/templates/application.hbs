@@ -1,0 +1,19 @@
+<main class="application">
+
+  {{x-sidenav class="application__sidenav u-fill-height"}}
+
+  {{!-- Navbar --}}
+  <section class="application__navbar c-navbar">
+    <div class="c-navbar__content-section u-fill-height o-content-box">
+      <button class="c-button c-button--primary c-navbar__login-button" onclick={{route-action 'authenticate'}}>Authenticate with Twitch</button>
+    </div>
+  </section>
+
+  <section class="application__main-content u-fill-height">
+
+
+    {{!-- Main content --}}
+    {{outlet}}
+  </section>
+
+</main>

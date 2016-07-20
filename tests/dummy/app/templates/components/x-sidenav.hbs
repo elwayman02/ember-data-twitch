@@ -1,0 +1,15 @@
+<section class="c-sidenav__header-section u-relative">
+  <header class="c-sidenav__header o-content-box u-fill">
+    {{#link-to 'index' class='c-sidenav__logo'}}Ember Data Twitch{{/link-to}}
+  </header>
+</section>
+
+<section class="c-sidenav__body-section">
+  <nav>
+    <ul class="c-sidenav__menu u-fill u-relative">
+      {{#each menuLinks as |menuLink|}}
+        {{menu-link-item class='c-sidenav__menu-link-item' routeName=menuLink.routeName title=menuLink.title isActive=(eq menuLink.routeName activeTopLevelRoute)}}
+      {{/each}}
+    </ul>
+  </nav>
+</section>

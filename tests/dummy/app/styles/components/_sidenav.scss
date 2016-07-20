@@ -1,0 +1,43 @@
+$height__sidenav-header: $height__navbar * 2.125;
+$height__sidenav-body: calc(100% - #{$height__sidenav-header});
+
+.c-sidenav {
+  overflow: hidden;
+  overflow-y: auto;
+
+  .c-sidenav__header-section {
+    height: $height__sidenav-header;
+  }
+  .c-sidenav__body-section {
+    height: $height__sidenav-body;
+  }
+
+  .c-sidenav__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .c-sidenav__logo {
+    color: $theme-color__nearWhite;
+    font-size: 1.5em;
+    text-decoration: none;
+  }
+
+  .c-sidenav__menu-link-item {
+    color: $theme-color__nearWhite;
+  }
+
+  .c-sidenav__menu-link-item:not(.is-active):hover,
+  .c-sidenav__menu-link-item:not(.is-active):focus {
+    color: $theme-color__primary-1--300;
+  }
+
+  .c-sidenav__menu-link-item::before {
+    background-color: hsla(0, 0%, 100%, 0.73);
+  }
+
+  .c-sidenav__menu-link-item::after {
+    background-color: $theme-color__primary-1--300;
+  }
+}

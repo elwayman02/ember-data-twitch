@@ -1,0 +1,27 @@
+.c-navbar {
+  background-color: white;
+  border: 1px solid $theme-color__primary-1--500;
+  box-shadow: 0 1px 3px $color__box-shadow;
+  display: flex;
+  flex-wrap: nowrap;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  .c-navbar__content-section {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+  }
+
+
+  .c-navbar__content-section {
+    flex-grow: 1;
+  }
+
+  .c-navbar__login-button {
+    margin-left: auto;
+    font-size: 0.75em;
+  }
+}
