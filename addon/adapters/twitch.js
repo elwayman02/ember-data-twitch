@@ -5,11 +5,23 @@ export default JSONAPIAdapter.extend({
   namespace: 'kraken',
   dataType: 'jsonp',
 
+
+  dataForRequest() {
+    const data = this._super(...arguments);
+    return data || {};
+  },
+
+  /**
+   * Currently, `ajaxOptions` is still the only place to alter
+   * the `dataType` request parameter
+   * @see: https://github.com/emberjs/data/pull/4357
+   */
   ajaxOptions() {
-    let hash = this._super.call(this, ...arguments);
-    hash.data = hash.data || {};
+    const hash = this._super(...arguments);
+
     hash.dataType = this.get('dataType');
     hash.traditional = true;
+
     return hash;
   }
 });
