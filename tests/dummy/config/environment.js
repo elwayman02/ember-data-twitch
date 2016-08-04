@@ -16,8 +16,16 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+
+    twitch: {
+      redirectURI: 'http://localhost:4233/twitch-auth',
+      clientId: process.env.TWITCH_CLIENT_ID,
+      responseType: 'token'
     }
   };
+
+
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
@@ -40,8 +48,7 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     ENV.locationType = 'hash';
-    ENV.baseURL = '/ember-data-twitch/';
-
+    ENV.rootURL = '/ember-data-twitch/';
   }
 
   return ENV;
