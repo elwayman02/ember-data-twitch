@@ -1,8 +1,26 @@
-import Ember from 'ember';
+import Route from 'ember-route';
+import injectService from 'ember-service/inject';
 
-export default Ember.Route.extend({
+export default Route.extend({
+  VideosPageService: injectService('videos-page'),
+
   model() {
-    // return this.store.findAll('twitch-video');
-    return {};
+    return {
+      videoIdToSearch: null,
+      channelIdToSearch: null,
+      searchResults: this.get('VideosPageService').videos
+    };
+  },
+
+  actions: {
+    findById(id) {
+      debugger;
+      return this.store.findRecord('twitch-video', id);
+    },
+
+    getForChannel(channelId) {
+      return this.store.findRecord('twitch-video', channelId);
+    }
   }
+
 });

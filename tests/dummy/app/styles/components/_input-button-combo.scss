@@ -1,0 +1,14 @@
+
+.c-input-button-combo {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.c-input-button-combo__input {
+  flex: 1;
+}
+
+.c-input-button-combo__button {
+  flex-grow: 0;
+  flex-shrink: 0;
+}

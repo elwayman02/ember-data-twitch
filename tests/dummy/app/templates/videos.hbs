@@ -1,9 +1,55 @@
-<h2>Videos</h2>
+<section class="p-videos u-fill u-relative">
+  <header>
+    <h2>Videos</h2>
+  </header>
 
-<ul>
-  {{#each model as |videos|}}
-    <li>video.title</li>
-  {{/each}}
-</ul>
+  <section class="p-videos__search-options-section">
+    <h3 class="u-align-center">Ways to Find Videos</h3>
 
-{{outlet}}
+    <div class="p-videos__search-options">
+
+      {{#x-form class="p-videos__search-option" onSubmit=(route-action 'findById' model.videoIdToSearch)}}
+        <p class="c-form-field">
+          <label class="c-text-input-label" for="find-by-video-id">Find by Video ID</label>
+          <span class="c-input-button-combo u-fill-width">
+            {{input
+              id="find-by-video-id"
+              class="c-text-input c-input-button-combo__input"
+              placeholder="For example, &quot;444&quote;"
+              value=model.videoIdToSearch
+            }}
+            {{x-button class="c-input-button-combo__button" type="submit" title="Search"}}
+          </span>
+        </p>
+      {{/x-form}}
+
+      {{#x-form class="p-videos__search-option" onSubmit=(route-action 'getForChannel' model.channelIdToSearch)}}
+        <p class="c-form-field">
+          <label class="c-text-input-label" for="find-by-video-id">Find by Channel ID</label>
+          <span class="c-input-button-combo u-fill-width">
+            {{input
+              id="find-by-channel-id"
+              class="c-text-input c-input-button-combo__input"
+              placeholder="Channel ID (for example '444')"
+              value=model.channelIdToSearch
+            }}
+            {{x-button class="c-input-button-combo__button" type="submit" title="Search"}}
+          </span>
+        </p>
+      {{/x-form}}
+
+    </div>
+  </section>
+
+  <section class="p-videos__search-results-section">
+
+    {{#each model.searchResults as |resultVideo|}}
+      {{video-card class="p-videos__search-results-card" video=resultVideo}}
+    {{/each}}
+
+    {{video-card class="p-videos__search-results-card" video=(hash title="fffffff")}}
+  </section>
+
+  {{outlet}}
+
+</section>

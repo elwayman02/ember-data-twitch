@@ -2,6 +2,7 @@
 
 @import "components/components";
 @import "object-patterns/object-patterns";
+@import "pages/pages";
 @import "typography/typography";
 @import "utilities/utilities";
 
@@ -59,6 +60,7 @@ ul {
     padding-top: $height__navbar;
     overflow: hidden;
     overflow-y: auto;
+    box-sizing: border-box;
   }
 
 

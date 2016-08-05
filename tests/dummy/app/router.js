@@ -8,7 +8,11 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('index', { path: '/' });
-  this.route('videos');
+
+  this.route('videos', function() {
+    this.route('video', { path: ':video_id' });
+  });
+
   this.route('twitch-auth');
   this.route('users');
   this.route('teams');
@@ -21,6 +25,7 @@ Router.map(function() {
   this.route('chats');
   this.route('channels');
   this.route('blocks');
+  this.route('error-404');
 });
 
 export default Router;
