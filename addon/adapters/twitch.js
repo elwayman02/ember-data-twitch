@@ -18,9 +18,7 @@ export default JSONAPIAdapter.extend({
    */
   ajaxOptions() {
     const hash = this._super(...arguments);
-
     hash.dataType = this.get('dataType');
-    hash.traditional = true;
 
     return hash;
   }
