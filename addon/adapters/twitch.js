@@ -41,6 +41,10 @@ export default JSONAPIAdapter.extend({
     return hash;
   },
 
+  parseErrorResponse() {
+    debugger;
+  },
+
   handleResponse(status, headers, payload) {
     debugger;
     if ('error' in payload) {
