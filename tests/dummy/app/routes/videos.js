@@ -34,7 +34,6 @@ export default Route.extend({
         .catch(({ errors }) => {
           // server-side error message
           this.set('currentModel.videoIdToSearch', '');
-          debugger;
           this.get('flashMessages').danger(`${errors[0].detail}`);
         });
 

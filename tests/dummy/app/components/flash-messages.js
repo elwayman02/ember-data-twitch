@@ -3,6 +3,7 @@ import computed from 'ember-computed';
 import injectService from 'ember-service/inject';
 import layout from '../templates/components/flash-messages';
 
+
 export default Component.extend({
   layout,
   flashMessages: injectService(),

@@ -1,2 +1,8 @@
-{{content.message}}
-{{yield}}
+<h3 class="c-flash-message__heading">{{content.message}}</h3>
+{{!-- <button class="c-flash-message__button" aria-label="Close" onclick={{action 'close'}}>X</button> --}}
+{{icon-button
+  class="c-flash-message__button"
+  iconURL="/assets/icons.svg#icon_x"
+  aria-label="Close"
+  onclick=(action 'close')
+}}

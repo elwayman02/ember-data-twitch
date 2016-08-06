@@ -1,22 +1,26 @@
+import Ember from 'ember';
 import Component from 'ember-component';
 import computed from 'ember-computed';
 import run from 'ember-runloop';
 import layout from '../templates/components/flash-message';
 
+const { getWithDefault } = Ember;
 const { readOnly } = computed;
 const { next, cancel } = run;
 
 
 export default Component.extend({
   layout,
+  tagName: 'section',
   classNames: ['c-flash-message', 'o-content-box'],
-
   classNameBindings: ['isActive', 'isExiting', 'colorClassName'],
+
+  attributeBindings: ['role'],
 
   content: null,
   isActive: false,
+  role: 'alert',
   // shadowDepth: 3,
-
 
   exit() {
     this.set('content.exiting', true);
@@ -34,7 +38,7 @@ export default Component.extend({
         warning: 'c-flash-message--warning',
         success: 'c-flash-message--success',
         info: 'c-flash-message--info'
-      }[contentType];
+      }[contentType || 'info'];
     }
   }),
 
@@ -59,6 +63,13 @@ export default Component.extend({
     // task to add the "active" class (see: didInsertElement)
     if (this._applyActiveClass) {
       cancel(this._applyActiveClass);
+    }
+  },
+
+
+  actions: {
+    close() {
+      this.exit();
     }
   },
 

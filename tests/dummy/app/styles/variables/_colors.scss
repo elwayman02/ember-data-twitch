@@ -1,0 +1,44 @@
+/**
+ * BASE COLORS
+ */
+
+
+/**
+ * -----------------------------------------
+ * THEME COLORS
+ * -----------------------------------------
+ */
+$theme-color__primary-1--100: hsla(261, 53%, 76%, 1.00);
+$theme-color__primary-1--300: hsla(261, 43%, 55%, 1.00);
+$theme-color__primary-1--500: hsla(261, 43%, 45%, 1.00);
+$theme-color__primary-1--700: hsla(255, 27%, 20%, 1.00);
+$theme-color__primary-1--900: hsla(256, 22%, 10%, 1.00);
+
+$theme-color__nearWhite: hsla(0, 0%, 92%, 1.00);
+
+$color__box-shadow: hsla(0, 0%, 0%, 0.43);
+
+
+/**
+ * -----------------------------------------
+ * ALERT COLORS
+ * -----------------------------------------
+ */
+$alert-color__danger--700: hsla(0, 100%, 66%, 1.00);
+$alert-color__warning--700: hsla(54, 100%, 62%, 1.00);
+$alert-color__success--700: hsla(165, 82%, 51%, 1.00);
+$alert-color__info--700: hsla(199, 98%, 48%, 1.00);
+
+
+$alert-color__danger--300: hsla(5, 100%, 75%, 1.00);
+$alert-color__warning--300: hsla(60, 100%, 78%, 1.00);
+$alert-color__success--300: hsla(137, 77%, 85%, 1.00);
+$alert-color__info--300: hsla(180, 100%, 76%, 1.00);
+
+/**
+ * -----------------------------------------
+ * GRAYSCALE COLORS
+ * -----------------------------------------
+ */
+$grayscale__black-on-light--primary-text: hsla(0, 0%, 0%, 0.87);
+$grayscale__white-on-dark--primary-text: hsla(0, 100%, 100%, 1);

@@ -1,10 +1,18 @@
 /*jshint node:true*/
 /* global require, module */
 var EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
+var path = require('path');
 
 module.exports = function(defaults) {
   var app = new EmberAddon(defaults, {
-    // Add options here
+    svgstore: {
+      excludeSourceFiles: true, // exclude all processed source files (https://github.com/salsify/ember-cli-svgstore#usage)
+      files: {
+        sourceDirs: [ 'tests/dummy/public/assets/icons' ],
+        outputFile: '/assets/icons.svg',
+        excludeSourceFiles: true // exclude source files only for this master SVG
+      }
+    }
   });
 
   /*

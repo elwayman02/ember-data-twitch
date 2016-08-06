@@ -1,0 +1,18 @@
+.c-flash-messages__message {
+  opacity: 0;
+  transform: translateY(100%);
+  transition:
+    top $duration__shift-element $easing__ease-out-cubic,
+    transform $duration__shift-element $easing__ease-out-quad,
+    opacity $duration__fade-toggle $easing__ease-out-sine;
+}
+
+.c-flash-messages__message.is-active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.c-flash-messages__message.is-exiting {
+  transform: translateY(110%);
+  opacity: 0;
+}

@@ -1,0 +1,39 @@
+.c-flash-message {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-around;
+  border-left: 0.85em solid;
+}
+
+.c-flash-message__heading {
+  flex: 1 0 auto;
+  color: $grayscale__black-on-light--primary-text;
+}
+
+.c-flash-message__button {
+  flex: 0 0 auto;
+  margin-left: auto;
+}
+
+
+/* ------- Modifiers ------- */
+.c-flash-message--danger {
+  border-left-color: $alert-color__danger--700;
+  background-color: $alert-color__danger--300;
+}
+
+.c-flash-message--warning {
+  border-left-color: $alert-color__warning--700;
+  background-color: $alert-color__warning--300;
+}
+
+.c-flash-message--success {
+  border-left-color: $alert-color__success--700;
+  background-color: $alert-color__success--300;
+}
+
+.c-flash-message--info {
+  border-left-color: $alert-color__info--700;
+  background-color: $alert-color__info--300;
+}

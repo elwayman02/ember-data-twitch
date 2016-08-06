@@ -1,9 +1,9 @@
 @import "variables/variables";
 
-@import "components/components";
 @import "object-patterns/object-patterns";
 @import "pages/pages";
 @import "typography/typography";
+@import "ui-components/ui-components";
 @import "utilities/utilities";
 
 html {
@@ -65,6 +65,7 @@ ul {
 }
 
 .p-application__flash-messages {
-  bottom: 0;
+  position: fixed;
+  bottom: 20%;
   right: 0;
 }
