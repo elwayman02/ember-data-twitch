@@ -29,6 +29,10 @@ $easing__ease-out-cubic: cubic-bezier(0.215, 0.610, 0.355, 1.000);
 $height__navbar: 4rem;
 $width__sidenav: 18rem;
 
+$dimension__tap-target--sm: 2rem;
+$dimension__tap-target--md: 3rem;
+$dimension__tap-target--lg: 5rem;
+
 /*
  * 180:130 padding ratio to align content aspect ratio with human FOV
  */

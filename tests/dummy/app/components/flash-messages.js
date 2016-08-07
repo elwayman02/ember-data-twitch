@@ -9,6 +9,10 @@ export default Component.extend({
   flashMessages: injectService(),
 
   classNames: ['c-flash-messages'],
+  classNameBindings: ['positionClass'],
+
+  verticalPos: 'bottom',
+  horizontalPos: 'right',
 
   /**
    * ember-cli-flash expects flash messages to be ordered
@@ -19,6 +23,21 @@ export default Component.extend({
   mostRecentMessages: computed('flashMessages.arrangedQueue.[]', {
     get() {
       return this.get('flashMessages.arrangedQueue').reverse();
+    }
+  }),
+
+  positionClass: computed('verticalPos', 'horizontalPos', {
+    get() {
+      let { verticalPos, horizontalPos } = this.getProperties('verticalPos', 'horizontalPos');
+
+      verticalPos = ['bottom', 'top'].indexOf(verticalPos.toLowerCase()) === -1 ? 'bottom' : verticalPos;
+      horizontalPos = ['left', 'right'].indexOf(horizontalPos.toLowerCase()) === -1 ? 'right' : horizontalPos;
+
+      if (verticalPos === 'bottom') {
+        return horizontalPos === 'left' ? 'c-flash-messages--bottom-left' : 'c-flash-messages--bottom-right';
+      }
+
+      return horizontalPos === 'left' ? 'c-flash-messages--top-left' : 'c-flash-messages--top-right';
     }
   })
 

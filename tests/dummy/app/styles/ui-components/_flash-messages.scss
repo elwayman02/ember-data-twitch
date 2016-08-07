@@ -1,18 +1,41 @@
+.c-flash-messages {
+  pointer-events: none;
+  position: fixed;
+}
+
 .c-flash-messages__message {
   opacity: 0;
-  transform: translateY(100%);
   transition:
-    top $duration__shift-element $easing__ease-out-cubic,
     transform $duration__shift-element $easing__ease-out-quad,
     opacity $duration__fade-toggle $easing__ease-out-sine;
 }
 
-.c-flash-messages__message.is-active {
-  transform: translateY(0);
-  opacity: 1;
+
+/* Positioning */
+.c-flash-messages--bottom-right {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+
+  .c-flash-messages__message {
+    transform: translateY(100%);
+  }
+  .c-flash-messages__message.is-active {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .c-flash-messages__message.is-exiting {
+    transform: translateY(110%);
+    opacity: 0;
+  }
 }
 
-.c-flash-messages__message.is-exiting {
-  transform: translateY(110%);
+
+
+.c-flash-messages__message {
   opacity: 0;
+  transform: translateY(100%);
+  transition:
+    transform $duration__shift-element $easing__ease-out-quad,
+    opacity $duration__fade-toggle $easing__ease-out-sine;
 }

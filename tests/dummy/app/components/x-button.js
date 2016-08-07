@@ -5,8 +5,7 @@ import layout from '../templates/components/x-button';
 export default Component.extend({
   layout,
   tagName: 'button',
-  attributeBindings: ['disabled', 'type'],
+  attributeBindings: ['disabled', 'type', 'aria-label'],
   classNames: ['c-button'],
   title: null
-
 });
