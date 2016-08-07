@@ -32,9 +32,12 @@ export default Route.extend({
           this.get('VideosPageService').set('searchResults', res);
         })
         .catch(({ errors }) => {
+          debugger;
           // server-side error message
           this.set('currentModel.videoIdToSearch', '');
-          this.get('flashMessages').danger(`${errors[0].detail}`);
+          this.get('flashMessages').danger(`${errors[0].detail}`, {
+            extendedTimeout: 420
+          });
         });
 
     },

@@ -1,14 +1,52 @@
+@keyframes FlashInFromRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes FlashOutLeft {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
 .c-flash-messages {
   pointer-events: none;
   position: fixed;
 }
 
 .c-flash-messages__message {
-  opacity: 0;
-  transition:
-    transform $duration__shift-element $easing__ease-out-quad,
-    opacity $duration__fade-toggle $easing__ease-out-sine;
+  animation-duration: $duration__slide-element;
+  width: $width__flash-message;  // 📝 TODO: Media queries for responsive widths
 }
+
+.c-flash-messages__message:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.c-flash-messages__message.is-active {
+  pointer-events: auto;
+  animation-timing-function: $easing__ease-out-cubic--bounce-25;
+}
+
+.c-flash-messages__message.is-exiting {
+  pointer-events: initial;
+  animation-timing-function: $easing__ease-in-quad;
+}
+//
+//.c-flash-message:hover {
+//  animation-play-state: paused;
+//}
 
 
 /* Positioning */
@@ -17,25 +55,10 @@
   bottom: 0;
   right: 0;
 
-  .c-flash-messages__message {
-    transform: translateY(100%);
-  }
   .c-flash-messages__message.is-active {
-    transform: translateY(0);
-    opacity: 1;
+    animation-name: FlashInFromRight;
   }
   .c-flash-messages__message.is-exiting {
-    transform: translateY(110%);
-    opacity: 0;
+    animation-name: FlashOutLeft;
   }
-}
-
-
-
-.c-flash-messages__message {
-  opacity: 0;
-  transform: translateY(100%);
-  transition:
-    transform $duration__shift-element $easing__ease-out-quad,
-    opacity $duration__fade-toggle $easing__ease-out-sine;
 }

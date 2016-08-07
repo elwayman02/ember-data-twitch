@@ -1,8 +1,8 @@
 <h3 class="c-flash-message__heading">{{content.message}}</h3>
-{{!-- <button class="c-flash-message__button" aria-label="Close" onclick={{action 'close'}}>X</button> --}}
 {{icon-button
-  class="c-flash-message__button"
+  class="c-flash-message__button o-darken-color-on-hover"
   iconURL="/assets/icons.svg#icon_x"
   aria-label="Close"
-  onclick=(action 'close')
+  strokeWidth="0.25em"
+  click=(action 'close')
 }}

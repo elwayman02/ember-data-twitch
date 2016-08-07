@@ -14,9 +14,6 @@
     {{outlet}}
   </section>
 
-  {{!-- {{flash-messages class="p-application__flash-messages u-relative"}} --}}
-  {{#flash-messages}}
-    {{flash-message class="c-flash-messages__message" content=(hash message="Foo")}}
-  {{/flash-messages}}
+  {{flash-messages verticalPos="bottom" horizontalPos="right"}}
 
 </main>

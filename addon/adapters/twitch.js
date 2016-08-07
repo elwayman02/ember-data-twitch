@@ -1,20 +1,21 @@
+import Ember from 'ember';
 import JSONAPIAdapter from 'ember-data/adapters/json-api';
 import Inflector from 'ember-inflector';
 import DS from 'ember-data';
 
 const { inflector } = Inflector;
 const { InvalidError } = DS;
+const { $: { parseJSON } } = Ember;
 
 export default JSONAPIAdapter.extend({
   host: 'https://api.twitch.tv',
   namespace: 'kraken',
-  dataType: 'jsonp',
   apiKey: null,
 
   defaultSerializer: '-twitch',
 
   headers: {
-    Accept: 'application/vnd.twitchtv.v3+json'
+    'Accept': 'application/vnd.twitchtv.v3+json'
   },
 
   pathForType(modelName) {
@@ -22,8 +23,8 @@ export default JSONAPIAdapter.extend({
   },
 
   dataForRequest() {
-    const data = this._super(...arguments);
-    return data || {};
+    const data = this._super(...arguments) || {};
+    return data;
   },
 
 
@@ -36,29 +37,29 @@ export default JSONAPIAdapter.extend({
     const hash = this._super(...arguments);
 
     hash.dataType = this.get('dataType');
-    // hash.traditional = true;
 
     return hash;
   },
 
-  parseErrorResponse() {
-    debugger;
+  /**
+   * @see: https://github.com/justintv/Twitch-API#errors
+   */
+  parseErrorResponse(responseText) {
+    return parseJSON(responseText);
   },
 
   handleResponse(status, headers, payload) {
-    debugger;
-    if ('error' in payload) {
-      const { status: errorCode, message: errorMessage } = payload;
+    if ('error' in payload && status === 404) {
+      const { message: errorMessage } = payload;
 
-      if (errorCode == 404) {
-        return new InvalidError([
-          {
-            detail: errorMessage,
-            source: { pointer: `/data/attributes/` }  // TODO: How should we really make this
-          }
-        ]);
-      }
+      return new InvalidError([
+        {
+          detail: errorMessage,
+          source: { pointer: `/data/attributes/` }  // TODO: How should we really make this
+        }
+      ]);
     }
+    return this._super(...arguments);
   }
 
 });

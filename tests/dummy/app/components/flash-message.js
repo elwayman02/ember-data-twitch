@@ -23,6 +23,8 @@ export default Component.extend({
   // shadowDepth: 3,
 
   exit() {
+    debugger;
+    this.set('isActive', false);
     this.set('content.exiting', true);
   },
 

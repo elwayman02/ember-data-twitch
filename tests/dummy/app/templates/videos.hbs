@@ -10,12 +10,12 @@
 
       {{#x-form class="p-videos__search-option" onSubmit=(route-action 'findById' model.videoIdToSearch)}}
         <p class="c-form-field">
-          <label class="c-text-input-label" for="find-by-video-id">Find by Video ID</label>
+          <label class="c-text-input-label" for="find-by-video-id">Find one by Video ID (test: v82113942)</label>
           <span class="c-input-button-combo u-fill-width">
             {{input
               id="find-by-video-id"
               class="c-text-input c-input-button-combo__input"
-              placeholder="For example, &quot;444&quote;"
+              placeholder="For example, &quot;v82113942&quot;"
               value=model.videoIdToSearch
             }}
             {{x-button class="c-input-button-combo__button" type="submit" title="Search"}}
@@ -25,7 +25,7 @@
 
       {{#x-form class="p-videos__search-option" onSubmit=(route-action 'getForChannel' model.channelIdToSearch)}}
         <p class="c-form-field">
-          <label class="c-text-input-label" for="find-by-video-id">Find by Channel ID</label>
+          <label class="c-text-input-label" for="find-by-video-id">Find all for Channel ID</label>
           <span class="c-input-button-combo u-fill-width">
             {{input
               id="find-by-channel-id"

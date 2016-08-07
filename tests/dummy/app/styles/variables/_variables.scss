@@ -13,12 +13,15 @@
  */
 $duration__fade-toggle: 0.25s;
 $duration__shift-element: 0.2s;
+$duration__slide-element: 0.42s;
+
 
 $easing__ease-in-quad: cubic-bezier(0.550, 0.085, 0.680, 0.530);
 
 $easing__ease-out-sine: cubic-bezier(0.390, 0.575, 0.565, 1.000);
 $easing__ease-out-quad: cubic-bezier(0.250, 0.460, 0.450, 0.940);
 $easing__ease-out-cubic: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+$easing__ease-out-cubic--bounce-25: cubic-bezier(0.27, 0.78, 0.75, 2.15);
 
 
 /**
@@ -28,6 +31,7 @@ $easing__ease-out-cubic: cubic-bezier(0.215, 0.610, 0.355, 1.000);
  */
 $height__navbar: 4rem;
 $width__sidenav: 18rem;
+$width__flash-message: 23rem;
 
 $dimension__tap-target--sm: 2rem;
 $dimension__tap-target--md: 3rem;

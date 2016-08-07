@@ -3,4 +3,10 @@
   display: flex;
   justify-content: center;
   border: 0;
+  cursor: pointer;
+
+  &:active,
+  &:focus {
+    outline: 0;
+  }
 }
