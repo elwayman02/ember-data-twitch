@@ -7,6 +7,7 @@ const { inflector } = Inflector;
 const { InvalidError } = DS;
 const { $: { parseJSON } } = Ember;
 
+
 export default JSONAPIAdapter.extend({
   host: 'https://api.twitch.tv',
   namespace: 'kraken',
@@ -49,6 +50,7 @@ export default JSONAPIAdapter.extend({
   },
 
   handleResponse(status, headers, payload) {
+    debugger;
     if ('error' in payload && status === 404) {
       const { message: errorMessage } = payload;
 
