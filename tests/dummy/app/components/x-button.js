@@ -7,5 +7,8 @@ export default Component.extend({
   tagName: 'button',
   attributeBindings: ['disabled', 'type', 'aria-label'],
   classNames: ['c-button'],
-  title: null
+
+  title: null,
+  disabled: false
+
 });

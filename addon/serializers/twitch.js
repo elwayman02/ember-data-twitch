@@ -36,15 +36,6 @@ export default JSONAPISerializer.extend({
   },
 
 
-  // _resolveType(modelName) {
-  //   return inflector.pluralize(modelName);
-  //   // return inflector.pluralize(modelName.replace('twitch-', ''));
-  // },
-
-  _extractId(resourceHash) {
-    return resourceHash[this.get('primaryKey')];
-  },
-
   _extractAttributes(modelClass, resourceHash /* , serializer */) {
     const attributes = {};
 
@@ -96,52 +87,16 @@ export default JSONAPISerializer.extend({
   },
 
 
-  normalizeResponse(store, primaryModelClass, payload, id, requestType) {
-    debugger;
-    // const documentHash = { data: [], included: [] };
-    // const clientType = primaryModelClass.modelName;
-    // const serverType = this.get('modelType');
-    // const isSingular = requestType.search(/^(:?.*Record|belongsTo)$/) > -1;
-    //
-    // // The server returns singular records as a flat payload
-    // const root = isSingular ? payload : payload[serverType];
-    //
-    // // ❓❓❓: Is there a good way to detect an invalid SINGULAR response at this point? Or are we certain to be okay if we get here?
-    // assert(
-    //   'The root of results with multiple items must contain the pluralized model class name as a key',
-    //   (isSingular || typeof root !== 'undefined')
-    // );
-    //
-    //
-    // // JSON-API expects singular records to comprise the document root
-    // // (that is, we don't need a top-level "data" key)
-    // if (isSingular) documentHash.data = documentHash.data[0];
-    //
-    // return this._super(store, primaryModelClass, documentHash, id, requestType);
-    return this._super(...arguments);
-  },
-
   /**
-   * normalize a find-record payload from the server into a JSON-API Document.
-   * @see: http://jsonapi.org/format/#document-structure
-   *
-   * For single objects returned by the Twitch API, it seems that we'll want to
-   * separate out the _id, the links, and hashes keyed by other model names, and then
-   * treat everything else as attributes.
-   * @see: https://github.com/justintv/Twitch-API/blob/master/v3_resources/videos.md#example-response
+   * normalize a payload from the server into a JSON-API Document, specifying
+   * 'data' as a root key name for the returned hash
+   * @see: http://jsonapi.org/format/#document-resource-objects
    */
   normalizeFindRecordResponse(store, primaryModelClass, payload, id, requestType) {
-    // const documentHash = { attributes: {}, relationships: {}, included: [] };
-    // const type = this._resolveType(primaryModelClass.modelName);
+    // ❓❓❓: Is there a good way to detect an invalid SINGULAR response at this point? Or are we certain to be okay if we get here?
+    const documentHash = { data: this._makeDocumentDataHash(primaryModelClass, payload) };
 
-    // documentHash.type = type;
-    // documentHash.id = payload._id;
-    // documentHash.attributes = this._extractAttributes(primaryModelClass, payload, this);
-    // documentHash.relationships = this._extractRelationships(primaryModelClass, payload);
-    const documentHash = this._makeDocumentDataHash(primaryModelClass, payload);
-    debugger;
-    // return this._super(store, primaryModelClass, documentHash, id, requestType);
-    return this._super(store, primaryModelClass, { data: documentHash }, id, requestType);
+    return this._super(store, primaryModelClass, documentHash, id, requestType);
   },
 
 
@@ -170,13 +125,6 @@ export default JSONAPISerializer.extend({
     // set document `data`
     documentHash.data = payloadData.map(data => this._makeDocumentDataHash(primaryModelClass, data));
 
-
-    return this._super(...arguments);
-    // return this._super(store, primaryModelClass, documentHash, id, requestType);
-  },
-
-  extractErrors(store, typeClass, payload, id) {
-    debugger;
-    return this._super(...arguments);
+    return this._super(store, primaryModelClass, documentHash, id, requestType);
   }
 });
