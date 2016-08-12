@@ -16,7 +16,6 @@ const { camelize, singularize, decamelize } = EmberString;
  * For an example collection response, @see: https://github.com/justintv/Twitch-API/blob/master/v3_resources/videos.md#example-response-1
  */
 export default JSONAPISerializer.extend({
-  primaryKey: '_id',
 
   /**
    * Model type as conceptualized by the server. Internally, (that is,
@@ -37,16 +36,16 @@ export default JSONAPISerializer.extend({
   },
 
 
-  _resolveType(modelName) {
-    return inflector.pluralize(modelName);
-    // return inflector.pluralize(modelName.replace('twitch-', ''));
-  },
+  // _resolveType(modelName) {
+  //   return inflector.pluralize(modelName);
+  //   // return inflector.pluralize(modelName.replace('twitch-', ''));
+  // },
 
   _extractId(resourceHash) {
     return resourceHash[this.get('primaryKey')];
   },
 
-  _extractAttributes(modelClass, resourceHash, serializer) {
+  _extractAttributes(modelClass, resourceHash /* , serializer */) {
     const attributes = {};
 
     modelClass.eachAttribute((attributeName) => {
@@ -87,6 +86,16 @@ export default JSONAPISerializer.extend({
   },
 
 
+  _makeDocumentDataHash(primaryModelClass, payload) {
+    return {
+      type: inflector.pluralize(primaryModelClass.modelName),  // matches the client-side type name of the model
+      id: payload._id,
+      attributes: this._extractAttributes(primaryModelClass, payload /* this */) || {},
+      relationships: this._extractRelationships(primaryModelClass, payload) || {}
+    };
+  },
+
+
   normalizeResponse(store, primaryModelClass, payload, id, requestType) {
     debugger;
     // const documentHash = { data: [], included: [] };
@@ -122,16 +131,17 @@ export default JSONAPISerializer.extend({
    * @see: https://github.com/justintv/Twitch-API/blob/master/v3_resources/videos.md#example-response
    */
   normalizeFindRecordResponse(store, primaryModelClass, payload, id, requestType) {
-    debugger;
-    const documentHash = { attributes: {}, relationships: {} }, included: [] };
-    const type = this._resolveType(primaryModelClass.modelName);
+    // const documentHash = { attributes: {}, relationships: {}, included: [] };
+    // const type = this._resolveType(primaryModelClass.modelName);
 
-    documentHash.type = type;
-    documentHash.id = payload._id;
-    documentHash.attributes = this._extractAttributes(primaryModelClass, payload, this);
-    documentHash.relationships = this._extractRelationships(primaryModelClass, payload);
+    // documentHash.type = type;
+    // documentHash.id = payload._id;
+    // documentHash.attributes = this._extractAttributes(primaryModelClass, payload, this);
+    // documentHash.relationships = this._extractRelationships(primaryModelClass, payload);
+    const documentHash = this._makeDocumentDataHash(primaryModelClass, payload);
     debugger;
-    return this._super(store, primaryModelClass, documentHash, id, requestType);
+    // return this._super(store, primaryModelClass, documentHash, id, requestType);
+    return this._super(store, primaryModelClass, { data: documentHash }, id, requestType);
   },
 
 
@@ -139,15 +149,16 @@ export default JSONAPISerializer.extend({
    * handle `findBelongsTo` responses identically to the way we handle `findRecord` responses
    */
   normalizeFindBelongsToResponse() {
+    debugger;
     return this.normalizeFindRecordResponse(...arguments);
   },
 
 
   normalizeFindAllResponse(store, primaryModelClass, payload, id, requestType) {
     debugger;
-    const clientType = primaryModelClass.modelName;
+    // const clientType = primaryModelClass.modelName;
     const serverType = this.get('modelType');
-    const payloadData = payload[serverType];
+    const payloadData = payload[inflector.pluralize(serverType)];
 
     assert('The root of results with multiple items must contain an array keyed on the pluralized model class name', isArray(payloadData));
 
@@ -157,11 +168,7 @@ export default JSONAPISerializer.extend({
     documentHash.type = clientType;
 
     // set document `data`
-    payloadData.forEach(data => {
-      documentHash.data.push({
-
-      });
-    });
+    documentHash.data = payloadData.map(data => this._makeDocumentDataHash(primaryModelClass, data));
 
 
     return this._super(...arguments);

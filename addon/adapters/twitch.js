@@ -61,8 +61,7 @@ export default JSONAPIAdapter.extend({
         }
       ]);
     }
-    // return this._super(...arguments);
-    return this._super(status, headers, { data: {} });
+    return this._super(...arguments);
   }
 
 });
