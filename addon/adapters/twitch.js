@@ -51,7 +51,7 @@ export default JSONAPIAdapter.extend({
 
   handleResponse(status, headers, payload) {
     debugger;
-    if ('error' in payload && status === 404) {
+    if (status === 404 && 'error' in payload) {
       const { message: errorMessage } = payload;
 
       return new InvalidError([
@@ -61,7 +61,8 @@ export default JSONAPIAdapter.extend({
         }
       ]);
     }
-    return this._super(...arguments);
+    // return this._super(...arguments);
+    return this._super(status, headers, { data: {} });
   }
 
 });
