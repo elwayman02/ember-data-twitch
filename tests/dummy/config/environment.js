@@ -20,12 +20,9 @@ module.exports = function(environment) {
 
     twitch: {
       redirectURI: 'http://localhost:4233/twitch-auth',
-      clientId: process.env.TWITCH_CLIENT_ID,
       responseType: 'token'
     }
   };
-
-
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
