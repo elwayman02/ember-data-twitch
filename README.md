@@ -2,6 +2,10 @@
 
 This addon provides Ember-Data abstractions for the [Twitch API v3](https://github.com/justintv/Twitch-API).
 
+## Installation
+
+* `ember install ember-data-twitch`
+
 ## Usage
 
 TBA
@@ -16,6 +20,13 @@ This section outlines the details of collaborating on this Ember addon.
 * `cd ember-data-twitch/`
 * `npm install`
 * `bower install`
+
+### Twitch API Key
+
+Register your Twitch application [here](https://www.twitch.tv/settings/connections). 
+Once you have a client key, create a `.env` file at the root of your project and add the following:
+
+`TWITCH_CLIENT_ID=yourtwitchclientid`
 
 ### Running
 
