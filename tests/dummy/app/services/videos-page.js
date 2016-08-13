@@ -1,7 +1,7 @@
 import Service from 'ember-service';
 import injectService from 'ember-service/inject';
 import { A } from 'ember-array/utils';
-import { task } from 'ember-concurrency';
+import { task, timeout } from 'ember-concurrency';
 import { or } from 'ember-computed';
 
 
@@ -12,6 +12,8 @@ export default Service.extend({
 
 
   findVideoByIdTask: task(function * (id) {
+    yield timeout(1000);
+    
     yield this.get('store').findRecord('twitch-video', id).then(video => {
       const searchResults = this.get('searchResults');
 

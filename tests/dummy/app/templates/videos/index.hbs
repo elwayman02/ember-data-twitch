@@ -18,7 +18,7 @@
               placeholder="For example, &quot;v82113942&quot;"
               value=model.videoIdToSearch
             }}
-            {{x-button class="c-input-button-combo__button" type="submit" title="Search"}}
+            {{x-button class="c-input-button-combo__button" type="submit" title="Search" disabled=model.videosPage.isLoadingData}}
           </span>
         </p>
       {{/x-form}}
@@ -33,14 +33,24 @@
               placeholder="Channel ID (for example '444')"
               value=model.channelIdToSearch
             }}
-            {{x-button class="c-input-button-combo__button" type="submit" title="Search"}}
+            {{x-button class="c-input-button-combo__button" type="submit" title="Search" disabled=model.videosPage.isLoadingData}}
           </span>
         </p>
       {{/x-form}}
 
-      {{x-button class="p-videos__search-option" click=(route-action 'findByPopularity') title="Find Most Popular Videos"}}
+      {{x-button
+        class="p-videos__search-option"
+        click=(route-action 'findByPopularity')
+        title="Find Most Popular Videos"
+        disabled=model.videosPage.isLoadingData
+      }}
 
-      {{x-button class="p-videos__search-option" click=(route-action 'findFromFollowedChannels') title=""}}
+      {{x-button
+        class="p-videos__search-option"
+        click=(route-action 'findFromFollowedChannels')
+        title="Videos From Your Followed Channels"
+        disabled=model.videosPage.isLoadingData
+      }}
 
     </div>
   </section>
@@ -52,7 +62,6 @@
       {{video-card class="p-videos__search-results-card" video=resultVideo}}
     {{/each}}
 
-    {{video-card class="p-videos__search-results-card" video=(hash title="fffffff")}}
   </section>
 
   {{outlet}}

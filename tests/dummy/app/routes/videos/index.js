@@ -33,24 +33,6 @@ export default Route.extend({
             extendedTimeout: 420
           });
         });
-      // return this.get('store')
-      //   .findRecord('twitch-video', id)
-      //   .then(res => {
-      //     const searchResults = this.get('VideosPageService.searchResults');
-      //
-      //     searchResults.clear();
-      //     searchResults.pushObject(res);
-      //
-      //   })
-      //   .catch(({ errors }) => {
-      //     debugger;
-      //     // server-side error message
-      //     this.set('currentModel.videoIdToSearch', '');
-      //     this.get('flashMessages').danger(`${errors[0].detail}`, {
-      //       extendedTimeout: 420
-      //     });
-      //   });
-
     },
 
     findAllForChannel(channelId) {
@@ -63,6 +45,10 @@ export default Route.extend({
       //   .get('TwitchAPIService')
       //   .find('twitch-video', channelId);
     }
+  },
+
+  findFromFollowedChannels() {
+    // 📝 TODO: Implement after setting up user authorization
   }
 
 });
