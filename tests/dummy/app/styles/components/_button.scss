@@ -1,18 +1,31 @@
 .c-button {
+  position: relative;
   display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 1em;
   padding: $padding__content-box;
   border-radius: 0.125em;
   color: $theme-color__nearWhite;
   border: 0;
   cursor: pointer;
+}
+
+
+.c-button.c-button--primary {
   background-color: $theme-color__primary-1--500;
   transition-property: background-color;
   transition-duration: 0.25s;
-  transition-timing-function: $easing__ease-out-cubic;
+  transition-timing-function: $easing__decelerating-entrance;
+}
 
-  &:hover {
+.c-button.c-button--icon-button {
+  padding: 0;
+}
+
+.c-button:hover {
+  &.c-button--primary {
     background-color: $theme-color__primary-1--300;
-    transition-timing-function: $easing__ease-in-quad;
+    transition-timing-function: $_easing__ease-in-quad;
   }
 }

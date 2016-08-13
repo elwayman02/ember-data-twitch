@@ -1,6 +1,10 @@
 .c-menu-link-item {
-  height: 3.25em;
+  line-height: 3.25em;
   position: relative;
+  z-index: 1;
+  transition-property: color;
+  transition-duration: $duration__fade-toggle;
+  transition-timing-function: $easing__accelerating-exit;
 
   &::before,
   &::after {
@@ -14,13 +18,13 @@
     z-index: -1;
     transition-property: opacity;
     transition-duration: $duration__fade-toggle;
-    transition-timing-function: $easing__ease-out-cubic;
+    transition-timing-function: $easing__accelerating-exit;
   }
 
   &:hover:not(.is-active)::before,
   &:focus:not(.is-active)::before {
     opacity: 1;
-    transition-timing-function: $easing__ease-in-quad;
+    transition-timing-function: $easing__decelerating-entrance;
   }
 
   &.is-active::after {
@@ -28,7 +32,10 @@
   }
 
   .c-menu-link-item__link {
-    display: flex;
-    align-items: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    min-width: 0;   /* The extra min-width allows flex-children to be able to have truncated ellipses (https://css-tricks.com/flexbox-truncated-text/) */
+    color: inherit;
+    padding: 0 1em;
   }
 }

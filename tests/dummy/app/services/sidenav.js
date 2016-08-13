@@ -1,14 +1,11 @@
-import Ember from 'ember';
+import Service from 'ember-service';
+import injectService from 'ember-service/inject';
 
-const { Service } = Ember;
-
-// const menuLink = EmberObject.extend({
-//   routeName: null,
-//   title: null,
-//   isActive: null,
-// })
 
 export default Service.extend({
+  MediaService: injectService('media'),
+  isVisible: false,
+  isAnimatable: false,
   activeTopLevelRoute: null,
 
   menuLinks: [
@@ -24,5 +21,16 @@ export default Service.extend({
     { routeName: 'subscriptions', title: 'Subscriptions' },
     { routeName: 'teams', title: 'Teams' },
     { routeName: 'users', title: 'Users' }
-  ]
+  ],
+
+  init() {
+    this._super(...arguments);
+    this._initSidenavVisibility();
+  },
+
+  _initSidenavVisibility() {
+    const MediaService = this.get('MediaService');
+
+    this.set('isVisible', MediaService.isGreaterThanTablet);
+  }
 });

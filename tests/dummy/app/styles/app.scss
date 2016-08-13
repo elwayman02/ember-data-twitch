@@ -1,13 +1,15 @@
+// Import base variables first
 @import "variables/variables";
 
 @import "components/components";
+@import "elements/elements";
 @import "object-patterns/object-patterns";
 @import "typography/typography";
 @import "utilities/utilities";
 
-html {
-  font-size: 100%;
-}
+$duration__sidenav-toggle: $duration__slide-element;
+$easing__expand-sidenav: $easing__decelerating-entrance;
+$easing__hide-sidenav: $easing__accelerating-exit;
 
 body {
   position: relative;
@@ -15,52 +17,72 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
-  background-color: hsla(0, 0%, 92%, 1);
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-
-.application {
-  position: relative;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
+  overflow: auto;
   background-color: hsla(0, 0%, 92%, 1);
   z-index: 1;
   display: flex;
   flex-wrap: nowrap;
+}
 
-  .application__sidenav {
-    flex: 0 1 $width__sidenav;
-    box-shadow: 2px 0 3px 1px $color__box-shadow;
-    background-image: linear-gradient(
-      to bottom,
-      $theme-color__primary-1--900 0%,
-      $theme-color__primary-1--700 66%,
-      $theme-color__primary-1--500
-    );
-    z-index: 1;
-  }
+.application__navbar {
+  height: $height__navbar;
+  min-width: $min-width__navbar;
+  box-shadow: 0 1px 23px -3px $theme-color__primary-1--500;
+  background-color: white;
+  position: fixed;
+  z-index: 1;
+}
 
-  .application__navbar {
-    height: $height__navbar;
-  }
+.application__main-content {
+  pointer-events: none;
+  padding-top: $height__navbar;
+  z-index: 0;
+}
 
-  .application__main-content {
-    flex: 1;
-    padding: $padding__content-box--lg;
-    padding-top: $height__navbar;
-    overflow: hidden;
-    overflow-y: auto;
-  }
+.application__sidenav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: $theme-color__nearWhite;
+  min-width: $width__sidenav;
+  max-width: $width__sidenav;
+  transform: translateX(-102%);
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+  will-change: transform;
+}
+
+/* ----------------- SETUP SIDENAV ANIMATION TIMING/DURATION ----------------- */
+.application__main-content,
+.application__sidenav.application__sidenav--animatable {
+  transition-duration: $duration__sidenav-toggle;
+  transition-timing-function: $easing__hide-sidenav;
+}
+
+.application__main-content--sidenav-visible,
+.application__sidenav--visible.application__sidenav--animatable {
+  transition-timing-function: $easing__decelerating-entrance;
+}
+
+.application__main-content {
+  /**
+   * 🎲🎲🎲 Animating non-GPU-accelarated properties is dicey. But
+   * this is ONE exception where we need to change the actual dimensions of
+   * our top-level page pieces AS we horizontally translate the sidenav.
+   */
+  transition-property: margin;
+}
 
 
+/* ----------------- PERFORM SIDENAV ANIMATION ----------------- */
 
+.application__main-content--sidenav-visible {
+  margin-left: $width__sidenav;
+}
+
+.application__sidenav--visible {
+  pointer-events: auto;
+  transform: none;
+  //transform: translateX(0%);
 }

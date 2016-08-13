@@ -6,8 +6,14 @@
 $theme-color__primary-1--100: hsla(261, 53%, 76%, 1.00);
 $theme-color__primary-1--300: hsla(261, 43%, 55%, 1.00);
 $theme-color__primary-1--500: hsla(261, 43%, 45%, 1.00);
-$theme-color__primary-1--700: hsla(255, 27%, 20%, 1.00);
-$theme-color__primary-1--900: hsla(256, 22%, 10%, 1.00);
+$theme-color__primary-1--700: hsla(261, 43%, 38%, 1.00);
+$theme-color__primary-1--900: hsla(261, 43%, 27%, 1.00);
+
+$theme-color__accent-1--100: hsla(178, 89%, 86%, 1.00);
+$theme-color__accent-1--300: hsla(180, 94%, 79%, 1.00);
+$theme-color__accent-1--500: hsla(181, 81%, 70%, 1.00);
+$theme-color__accent-1--700: hsla(181, 58%, 62%, 1.00);
+$theme-color__accent-1--900: hsla(181, 37%, 51%, 1.00);
 
 $theme-color__nearWhite: hsla(0, 0%, 92%, 1.00);
 
@@ -18,11 +24,20 @@ $color__box-shadow: hsla(0, 0%, 0%, 0.43);
  * ANIMATION
  * -----------------------------------------
  */
-$duration__fade-toggle: 0.25s;
 
-$easing__ease-in-quad: cubic-bezier(0.550, 0.085, 0.680, 0.530);
-$easing__ease-out-cubic: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+$duration__fade-toggle: 0.35s;
 
+/**
+ * Duration for sliding an element across the space of the view
+ */
+$duration__slide-element: 0.42s;
+
+$_easing__ease-in-quad: cubic-bezier(0.550, 0.085, 0.680, 0.530);
+$_easing__ease-out-cubic: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+$_easing__ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.150, 0.860);
+
+$easing__accelerating-exit: cubic-bezier(0.34, 0, 0, 1);
+$easing__decelerating-entrance: $_easing__ease-out-cubic;
 
 
 /**
@@ -30,9 +45,13 @@ $easing__ease-out-cubic: cubic-bezier(0.215, 0.610, 0.355, 1.000);
  * DIMENSIONS
  * -----------------------------------------
  */
-
 $height__navbar: 4rem;
-$width__sidenav: 18rem;
+$width__sidenav: 16.25rem;
+$min-width__navbar: $width__sidenav * 1.5;
+
+$dimension__tap-target--sm: 2rem;
+$dimension__tap-target--md: 3rem;
+$dimension__tap-target--lg: 5rem;
 
 /*
  * 180:130 padding ratio to align content aspect ratio with human FOV
