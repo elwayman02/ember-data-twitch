@@ -6,6 +6,15 @@ module.exports = function(defaults) {
   var app = new EmberAddon(defaults, {
     dotEnv: {
       clientAllowedKeys: ['TWITCH_CLIENT_ID']
+    },
+
+    svgstore: {
+      excludeSourceFiles: true, // exclude all processed source files (https://github.com/salsify/ember-cli-svgstore#usage)
+      files: {
+        sourceDirs: [ 'tests/dummy/public/assets/icons' ],
+        outputFile: '/assets/icons.svg',
+        excludeSourceFiles: true // exclude source files only for this master SVG
+      }
     }
   });
 
