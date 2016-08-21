@@ -20,14 +20,11 @@ export default Component.extend({
   content: null,
   isActive: false,
   role: 'alert',
-  // shadowDepth: 3,
 
   exit() {
-    debugger;
     this.set('isActive', false);
     this.set('content.exiting', true);
   },
-
 
   isExiting: readOnly('content.exiting'),
 

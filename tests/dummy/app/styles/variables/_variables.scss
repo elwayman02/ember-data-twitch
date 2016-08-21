@@ -17,6 +17,7 @@ $duration__slide-element: 0.42s;
 
 
 $easing__ease-in-quad: cubic-bezier(0.550, 0.085, 0.680, 0.530);
+$easing__ease-in-sine: cubic-bezier(0.550, 0.085, 0.680, 0.530);
 
 $easing__ease-out-sine: cubic-bezier(0.390, 0.575, 0.565, 1.000);
 $easing__ease-out-quad: cubic-bezier(0.250, 0.460, 0.450, 0.940);
@@ -42,3 +43,10 @@ $dimension__tap-target--lg: 5rem;
  */
 $padding__content-box: 0.75em 1.05em;
 $padding__content-box--lg: 1.5em 2.10em;
+
+/**
+ * -----------------------------------------
+ * OTHER GARNISHES
+ * -----------------------------------------
+ */
+ $box-shadow__card: 2px 4px 14px 1px hsla(0, 0%, 40%, 1);

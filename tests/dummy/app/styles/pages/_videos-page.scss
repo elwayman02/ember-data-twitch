@@ -19,13 +19,16 @@
     flex-shrink: 0;
   }
 
+  /* TODO: set horizontal margin when we know
+   * we're spaced horizontally
+   */
   .p-videos__search-option:not(:last-child) {
     margin-bottom: 1.5rem;
   }
 
   .p-videos__search-results-card {
-    width: 30rem;
-    height: 26rem;
     background-color: white;
+    box-shadow: $box-shadow__card;
+    margin: 1em 1.25em;
   }
 }

@@ -13,8 +13,9 @@ export default Service.extend({
 
   findVideoByIdTask: task(function * (id) {
     yield timeout(1000);
-    
+
     yield this.get('store').findRecord('twitch-video', id).then(video => {
+      debugger;
       const searchResults = this.get('searchResults');
 
       searchResults.clear();

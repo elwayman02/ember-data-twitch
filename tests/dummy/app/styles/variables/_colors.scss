@@ -40,5 +40,7 @@ $alert-color__info--300: hsla(180, 100%, 76%, 1.00);
  * GRAYSCALE COLORS
  * -----------------------------------------
  */
-$grayscale__black-on-light--primary-text: hsla(0, 0%, 0%, 0.87);
-$grayscale__white-on-dark--primary-text: hsla(0, 100%, 100%, 1);
+$grayscale__dark-on-light--primary-text: hsla(0, 0%, 13%, 1.00);
+$grayscale__dark-on-light--secondary-text: hsla(0, 0%, 52%, 1.00);
+
+$grayscale__light-on-dark--primary-text: hsla(0, 100%, 100%, 1);

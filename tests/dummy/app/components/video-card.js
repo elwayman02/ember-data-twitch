@@ -11,5 +11,9 @@ export default Component.extend({
   classNames: ['c-video-card', 'o-widget-box'],
   video: null,
 
-  title: readOnly('video.title')
+  title: readOnly('video.title'),
+  description: readOnly('video.description') || '(No description)',
+  viewCount: readOnly('video.views') || 0,
+  game: readOnly('video.game'),
+  previewSrc: readOnly('video.preview')
 });

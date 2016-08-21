@@ -58,7 +58,6 @@
   <section class="p-videos__search-results-section">
 
     {{#each model.videosPage.searchResults as |resultVideo|}}
-      Video title: {{resultVideo.title}}
       {{video-card class="p-videos__search-results-card" video=resultVideo}}
     {{/each}}
 
