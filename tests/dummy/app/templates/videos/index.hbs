@@ -17,21 +17,24 @@
               class="c-text-input c-input-button-combo__input"
               placeholder="For example, &quot;v82113942&quot;"
               value=model.videoIdToSearch
+              type="search"
             }}
             {{x-button class="c-input-button-combo__button" type="submit" title="Search" disabled=model.videosPage.isLoadingData}}
           </span>
         </p>
       {{/x-form}}
 
-      {{#x-form class="p-videos__search-option" onSubmit=(route-action 'findAllForChannel' model.channelIdToSearch)}}
+      {{#x-form class="p-videos__search-option" onSubmit=(route-action 'findAllForChannel' model.channelNameToSearch)}}
         <p class="c-form-field">
-          <label class="c-text-input-label" for="find-by-video-id">Find all for Channel ID</label>
+          <label class="c-text-input-label" for="find-by-video-id">Find all for Channel Name</label>
           <span class="c-input-button-combo u-fill-width">
             {{input
               id="find-by-channel-id"
               class="c-text-input c-input-button-combo__input"
-              placeholder="Channel ID (for example '444')"
-              value=model.channelIdToSearch
+              placeholder="Channel Name (for example 'twitch')"
+              value=model.channelNameToSearch
+              type="search"
+              aria-label="Search for a video by channel name"
             }}
             {{x-button class="c-input-button-combo__button" type="submit" title="Search" disabled=model.videosPage.isLoadingData}}
           </span>
@@ -42,14 +45,14 @@
         class="p-videos__search-option"
         click=(route-action 'findByPopularity')
         title="Find Most Popular Videos"
-        disabled=model.videosPage.isLoadingData
+        disabled=model.isLoadingData
       }}
 
       {{x-button
         class="p-videos__search-option"
         click=(route-action 'findFromFollowedChannels')
         title="Videos From Your Followed Channels"
-        disabled=model.videosPage.isLoadingData
+        disabled=model.isLoadingData
       }}
 
     </div>
@@ -57,7 +60,7 @@
 
   <section class="p-videos__search-results-section">
 
-    {{#each model.videosPage.searchResults as |resultVideo|}}
+    {{#each model.searchResults as |resultVideo|}}
       {{video-card class="p-videos__search-results-card" video=resultVideo}}
     {{/each}}
 

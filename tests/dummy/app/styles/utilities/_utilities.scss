@@ -11,3 +11,9 @@
 .u-align-center { text-align: center; }
 
 .u-pointer { cursor: pointer; }
+
+.u-truncate {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

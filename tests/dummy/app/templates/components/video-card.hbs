@@ -1,18 +1,15 @@
-{{!-- <header class="c-video-card__header o-content-box u-relative">
-  <h2 class="c-video-card__title u-align-center">
-    <a class="o-link-reset c-video-card__title-link" href={{video.url}} target="_blank">
-      {{title}}
-    </a>
-  </h2>
-</header> --}}
-
 <img class="c-video-card__image" src={{previewSrc}} alt={{title}}>
 
 <footer class="c-video-card__info-footer u-relative u-fill-width o-content-box">
   <h4 class="c-video-card__title">{{title}}</h4>
-  <p class="c-video-card__description">{{description}}</p>
-  <p>Game: {{game}}</p>
-  <p>Views: {{viewCount}}</p>
+
+  <p class="c-video-card__description">{{description}}ddd</p>
+
+  <p class="c-video-card__supporting-data">
+    <span class="u-truncate">Game:{{game}}</span>
+    <span class="u-truncate">Views: {{viewCount}}</span>
+  </p>
+
   <a class="c-video-card__twitch-link o-link-reset c-button" href={{video.url}} target="_blank">
     View on Twitch
   </a>
