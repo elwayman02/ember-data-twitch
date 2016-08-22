@@ -1,9 +1,25 @@
 import JSONAPIAdapter from 'ember-data/adapters/json-api';
+import Inflector from 'ember-inflector';
+import { camelize } from 'ember-string';
+
+const { inflector } = Inflector;
+
 
 export default JSONAPIAdapter.extend({
   host: 'https://api.twitch.tv',
   namespace: 'kraken',
   dataType: 'jsonp',
+
+  /**
+   * Determines a path fo a given type
+   *
+   * By default, we'll aim to return camelized/plurailzed forms of the model name,
+   * as that's currently the Twitch API's most common pattern. Some resources differ,
+   * however, and these cases will be handled by local overrides.
+   */
+  pathForType: function(modelName) {
+    return camelize(inflector.pluralize(modelName.replace('twitch-', '')));
+  },
 
 
   dataForRequest() {
