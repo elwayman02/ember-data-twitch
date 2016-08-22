@@ -5,6 +5,10 @@ var path = require('path');
 
 module.exports = function(defaults) {
   var app = new EmberAddon(defaults, {
+    dotEnv: {
+      clientAllowedKeys: ['TWITCH_CLIENT_ID']
+    },
+
     svgstore: {
       excludeSourceFiles: true, // exclude all processed source files (https://github.com/salsify/ember-cli-svgstore#usage)
       files: {

@@ -2,6 +2,10 @@
 
 This addon provides Ember-Data abstractions for the [Twitch API v3](https://github.com/justintv/Twitch-API).
 
+## Installation
+
+* `ember install ember-data-twitch`
+
 ## Usage
 
 The addon exposes a number of models, adapters, and serializers you can use to access data from the [Twitch V3 API][twitch-api]. If a particular API is not supported, please review our issue list and create a new one if it has not yet been requested. Contributions especially welcome!
@@ -19,6 +23,13 @@ This section outlines the details of collaborating on this Ember addon.
 * `cd ember-data-twitch/`
 * `npm install`
 * `bower install`
+
+### Twitch API Key
+
+Register your Twitch application [here](https://www.twitch.tv/settings/connections). 
+Once you have a client key, create a `.env` file at the root of your project and add the following:
+
+`TWITCH_CLIENT_ID=yourtwitchclientid`
 
 ### Running
 
