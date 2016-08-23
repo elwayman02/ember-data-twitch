@@ -9,16 +9,19 @@ export default JSONAPIAdapter.extend({
   host: 'https://api.twitch.tv',
   namespace: 'kraken',
   dataType: 'jsonp',
+  pluralizePath: true,
 
   /**
-   * Determines a path fo a given type
+   * Determines a path for a given type
    *
-   * By default, we'll aim to return camelized/plurailzed forms of the model name,
+   * By default, we'll aim to return camelized, plurailzed forms of the model name,
    * as that's currently the Twitch API's most common pattern. Some resources differ,
-   * however, and these cases will be handled by local overrides.
+   * however, and these cases can be handled by local overrides.
    */
   pathForType: function(modelName) {
-    return camelize(inflector.pluralize(modelName.replace('twitch-', '')));
+    const baseName = modelName.replace('twitch-', '');
+
+    return this.get('pluralizePath') ? camelize(inflector.pluralize(baseName)) : camelize(baseName);
   },
 
 
