@@ -14,14 +14,7 @@ export default JSONAPIAdapter.extend({
   init() {
     this._super(...arguments);
 
-    this.clientID = this.clientID || TwitchConfig.clientID;
-
-    if (!this.clientID) {
-      throw new Error(
-        'This adapter requires a `clientID` to be set before using the Twitch API ' +
-        'You can define a root `clientID` in the `ENV[\'ember-data-twitch\']` hash of `config/environment.js`'
-      );
-    }
+    this._initHeaders();
   },
 
   headers: {
@@ -58,5 +51,18 @@ export default JSONAPIAdapter.extend({
     hash.dataType = this.get('dataType');
 
     return hash;
+  },
+
+  _initHeaders() {
+    this.clientID = this.clientID ? this.clientID : TwitchConfig.clientID;
+
+    if (!this.clientID) {
+      throw new Error(
+        'This adapter requires a `clientID` to be set before using the Twitch API ' +
+        'You can define a root `clientID` in the `ENV[\'ember-data-twitch\']` hash of `config/environment.js`'
+      );
+    }
+
+    this.headers['Client-ID'] = this.clientID;
   }
 });
