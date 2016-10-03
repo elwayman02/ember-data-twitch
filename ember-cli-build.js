@@ -5,7 +5,10 @@ var EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 module.exports = function(defaults) {
   var app = new EmberAddon(defaults, {
     dotEnv: {
-      clientAllowedKeys: ['TWITCH_CLIENT_ID']
+      clientAllowedKeys: [
+        'TWITCH_CLIENT_ID',
+        'TWITCH_CLIENT_SECRET'
+      ]
     },
 
     svgstore: {

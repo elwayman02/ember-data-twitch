@@ -10,6 +10,28 @@ This addon provides Ember-Data abstractions for the [Twitch API v3](https://gith
 
 TBA
 
+### Configuration
+
+All requests to the Twitch API require a `CLIENT_ID` unique to your application.
+This should be set on an `ember-data-twitch` hash in the object exported by your app's `config/environment.js`:
+
+```js
+// config/environment.js
+module.exports = function(environment) {
+  var ENV = {
+    'ember-data-twitch': {
+      CLIENT_ID: <YOUR_CLIENT_ID>
+    }
+  };
+
+  return ENV;
+};
+```
+
+How this value is retrieved and stored within your application is up to you, but
+for good security practice, we recommend making use of [`ember-cli-dotenv`](https://github.com/fivetanley/ember-cli-dotenv).
+
+
 ## Contributing
 
 This section outlines the details of collaborating on this Ember addon.
@@ -23,7 +45,7 @@ This section outlines the details of collaborating on this Ember addon.
 
 ### Twitch API Key
 
-Register your Twitch application [here](https://www.twitch.tv/settings/connections). 
+Register your Twitch application [here](https://www.twitch.tv/settings/connections).
 Once you have a client key, create a `.env` file at the root of your project and add the following:
 
 `TWITCH_CLIENT_ID=yourtwitchclientid`
