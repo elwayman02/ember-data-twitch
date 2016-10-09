@@ -18,9 +18,10 @@ module.exports = function(environment) {
       // when it is created
     },
 
-    twitch: {
+    ['ember-data-twitch']: {
       redirectURI: 'http://localhost:4233/twitch-auth',
-      responseType: 'token'
+      clientID: process.env.TWITCH_CLIENT_ID,
+      clientSecret: process.env.TWITCH_CLIENT_SECRET
     }
   };
 

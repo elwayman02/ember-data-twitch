@@ -1,11 +1,14 @@
 import { moduleFor, test } from 'ember-qunit';
-
+import initTwitchConfig from '../../helpers/init-twitch-config';
 
 let actual, expected;
 
 moduleFor('adapter:twitch-ingest', 'Unit | Adapter | twitch ingest', {
   // Specify the other units that are required for this test.
-  // needs: ['serializer:foo']
+  // needs: ['serializer:foo'],
+  beforeEach() {
+    initTwitchConfig();
+  }
 });
 
 test('`pathForType` computes the correct Twitch API URL for the `modelName`', function (assert) {
