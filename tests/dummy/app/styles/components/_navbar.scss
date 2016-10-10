@@ -1,23 +1,21 @@
 .c-navbar {
-  background-color: white;
-  border: 1px solid $theme-color__primary-1--500;
-  box-shadow: 0 1px 3px $color__box-shadow;
   display: flex;
   flex-wrap: nowrap;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
 
-  .c-navbar__content-section {
-    display: flex;
-    align-items: center;
-    flex-grow: 1;
+  .c-navbar__logo {
+    font-size: larger;
+    color: $theme-color__primary-1--500;
   }
 
-
-  .c-navbar__content-section {
-    flex-grow: 1;
+  .c-navbar__sidenav-toggle-button {
+    background-color: transparent;
+    font-size: 1.75em;
+    color: $theme-color__accent-1--500;
   }
 
   .c-navbar__login-button {

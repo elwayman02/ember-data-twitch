@@ -1,19 +1,45 @@
-<main class="application">
+{{!-- Sideways-expanding/collapsing sidenav --}}
+{{x-sidenav
+  class=(concat
+    "application__sidenav u-fill-height u-relative "
+    media.classNames
+    (if model.sidenav.isVisible ' application__sidenav--visible')
+    (if model.sidenav.isAnimatable ' application__sidenav--animatable')
+  )
+}}
 
-  {{x-sidenav class="application__sidenav u-fill-height"}}
+{{!-- Navbar --}}
+<header
+  class="application__navbar
+         c-navbar
+         o-content-box
+         {{if model.sidenav.isVisible 'application__navbar--sidenav-visible'}}
+         {{media.classNames}}">
 
-  {{!-- Navbar --}}
-  <section class="application__navbar c-navbar">
-    <div class="c-navbar__content-section u-fill-height o-content-box">
-      <button class="c-button c-button--primary c-navbar__login-button" onclick={{route-action 'authenticate'}}>Authenticate with Twitch</button>
-    </div>
-  </section>
+  {{!-- Sidenav toggle --}}
+  {{icon-button
+    class="c-navbar__sidenav-toggle-button"
+    iconURL="assets/icons.svg#icon_menu-hamburger-rounded-edges"
+    strokeWidth="0.1em"
+    click=(route-action 'toggleSidenav')
+  }}
 
-  <section class="application__main-content u-fill-height">
+  {{!-- "Logo" --}}
+  {{#link-to 'application' class="c-navbar__logo c-link c-link--reset"}}Ember Data Twitch{{/link-to}}
+
+  {{!-- Authenticate --}}
+  <button class="c-button c-button--primary c-navbar__login-button" click={{route-action 'authenticate'}}>Authenticate with Twitch</button>
+
+</header>
 
 
-    {{!-- Main content --}}
-    {{outlet}}
-  </section>
-
+{{!-- Main content --}}
+<main
+  class="application__main-content
+         u-fill-height
+         u-relative
+         o-content-box--lg
+         {{if model.sidenav.isVisible 'application__main-content--sidenav-visible'}}
+         {{media.classNames}}">
+  {{outlet}}
 </main>

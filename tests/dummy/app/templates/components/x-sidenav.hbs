@@ -1,5 +1,11 @@
 <section class="c-sidenav__header-section u-relative">
-  <header class="c-sidenav__header o-content-box u-fill">
+  <header class="c-sidenav__header o-content-box u-fill u-relative">
+    {{icon-button
+      class="c-sidenav__close-button u-absolute"
+      iconURL="assets/icons.svg#icon_x"
+      click=(action (pipe (toggle 'isVisible' SidenavService false) (toggle 'isAnimatable' SidenavService true)))
+      strokeWidth="0.125em"
+    }}
     {{#link-to 'index' class='c-sidenav__logo'}}Ember Data Twitch{{/link-to}}
     <p class="c-sidenav__version">v{{app-version}}</p>
   </header>
