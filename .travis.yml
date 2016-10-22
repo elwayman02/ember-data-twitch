@@ -4,7 +4,6 @@ node_js:
   - "4"
 
 sudo: false
-
 cache:
   directories:
     - node_modules
@@ -33,6 +32,8 @@ install:
   - bower install
 
 script:
-  # Usually, it's ok to finish the test scenario without reverting
-  #  to the addon's original dependency state, skipping "cleanup".
-  - ember try:one $EMBER_TRY_SCENARIO test --skip-cleanup
+  - npm run test:coverage:ci
+
+after_script:
+  - npm install codeclimate-test-reporter
+  - cat coverage/lcov.info | node_modules/.bin/codeclimate-test-reporter
