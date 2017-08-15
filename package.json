@@ -54,7 +54,7 @@
     "twitch"
   ],
   "dependencies": {
-    "ember-cli-babel": "^5.1.6",
+    "ember-cli-babel": "^6.8.0",
     "ember-data": "2.11.0"
   },
   "ember-addon": {
